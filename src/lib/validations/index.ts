@@ -22,12 +22,12 @@ export const UpdateIntegrationsSchema = z.object({
   shopify: z.object({
     enabled: z.boolean(),
     name: z.string().optional().default('Shopify'),
-    config: z.record(z.string()).optional().default({}),
+    config: z.record(z.string(), z.string()).optional().default({}),
   }),
   crm: z.object({
     enabled: z.boolean(),
     name: z.string().optional().default('CRM'),
-    config: z.record(z.string()).optional().default({}),
+    config: z.record(z.string(), z.string()).optional().default({}),
   }),
 });
 
@@ -37,7 +37,7 @@ export const DashboardWidgetSchema = z.object({
   type: z.enum(['stat-card', 'integration-status', 'activity-feed', 'conversation-list', 'info-banner']),
   title: z.string(),
   order: z.number().default(0),
-  config: z.record(z.unknown()).default({}),
+  config: z.record(z.string(), z.unknown()).default({}),
 });
 
 export const DashboardSectionSchema = z.object({

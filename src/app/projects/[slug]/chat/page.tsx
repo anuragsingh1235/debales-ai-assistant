@@ -1,24 +1,22 @@
 'use client';
 
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useConversations, useCreateConversation } from '@/hooks/useConversations';
 import { useProject } from '@/hooks/useProject';
 import { useIntegrations } from '@/hooks/useIntegrations';
 import ChatSidebar from '@/components/chat/ChatSidebar';
-import MessageList from '@/components/chat/MessageList';
-import MessageInput from '@/components/chat/MessageInput';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Bot } from 'lucide-react';
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 export default function ChatLandingPage({ params }: Props) {
-  const [slug, setSlug] = React.useState('');
+  const [slug, setSlug] = useState('');
 
-  React.useEffect(() => {
+  useEffect(() => {
     params.then((p) => setSlug(p.slug));
   }, [params]);
 
@@ -60,7 +58,7 @@ export default function ChatLandingPage({ params }: Props) {
       <main className="flex-1 flex flex-col items-center justify-center">
         <div className="text-center px-8">
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500/20 to-indigo-600/20 border border-violet-500/20 flex items-center justify-center mx-auto mb-4">
-            <span className="text-2xl">✨</span>
+            <Bot size={28} className="text-violet-400" />
           </div>
           <h2 className="text-xl font-semibold text-white mb-2">
             {project?.name ?? 'AI Assistant'}
@@ -70,6 +68,7 @@ export default function ChatLandingPage({ params }: Props) {
           </p>
           <button
             onClick={async () => {
+              if (!productInstanceId) return;
               const result = await createConv.mutateAsync(productInstanceId);
               router.push(`/projects/${slug}/chat/${result.conversation._id}`);
             }}
@@ -84,6 +83,3 @@ export default function ChatLandingPage({ params }: Props) {
     </div>
   );
 }
-
-// Need to import React for useState in this file
-import React from 'react';
