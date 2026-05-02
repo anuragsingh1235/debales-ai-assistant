@@ -6,12 +6,18 @@ A full-stack multi-tenant AI assistant platform built with Next.js App Router, M
 
 ---
 
+## 🚀 Live Demo & Walkthrough
+- **Live Vercel App:** [https://debales-ai-assistant.vercel.app](https://debales-ai-assistant.vercel.app) *(Check Vercel for your exact domain)*
+- **Loom Walkthrough Video:** `[INSERT_YOUR_LOOM_LINK_HERE]`
+
+---
+
 ## Quick Start
 
 ### 1. Clone & Install
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/anuragsingh1235/debales-ai-assistant.git
 cd debales-ai-assistant
 npm install
 ```
